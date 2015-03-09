@@ -1,0 +1,10 @@
+config BR2_PACKAGE_PYTHON_PYQT
+	bool "python-pyqt"
+	depends on BR2_PACKAGE_PYTHON
+	select BR2_PACKAGE_PYTHON_SIP
+	help
+	  PyQt4 is a comprehensive set of Python bindings for 
+	  Digia’s Qt cross platform GUI toolkit. 
+	  PyQt4 supports Python v2 and v3.
+
+	  http://www.riverbankcomputing.com/software/pyqt/

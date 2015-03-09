@@ -1,0 +1,14 @@
+--- a/configure-ng.py	2013-10-18 19:36:57.969234500 +0400
++++ b/configure-ng.py	2013-10-18 19:10:58.000000000 +0400
+@@ -960,9 +960,11 @@ int main(int argc, char **argv)
+ 
+         if opts.vendincdir is not None:
+             self.vend_inc_dir = opts.vendincdir
++            self.py_inc_dir = opts.vendincdir
+ 
+         if opts.vendlibdir is not None:
+             self.vend_lib_dir = opts.vendlibdir
++            self.py_lib_dir = opts.vendlibdir
+ 
+         # Handle any conflicts.
+         if self.qt_shared:

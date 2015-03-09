@@ -1,0 +1,43 @@
+Add cross compilation options for using satged python
+config, libraries and includes
+
+Signed-off-by Sergey Kostanbaev <sergey.kostanbaev at gamil.com>
+====================================================================
+--- a/configure.py	2013-04-24 12:41:35.382000017 +0400
++++ b/configure.py	2013-04-24 13:09:30.000000000 +0400
+@@ -273,9 +273,9 @@
+         "default_mod_dir":  plat_py_site_dir,
+         "default_sip_dir":  opts.sipsipdir,
+         "py_version":       py_version,
+-        "py_inc_dir":       plat_py_inc_dir,
+-        "py_conf_inc_dir":  plat_py_conf_inc_dir,
+-        "py_lib_dir":       plat_py_lib_dir,
++        "py_inc_dir":       opts.py_inc_dir,
++        "py_conf_inc_dir":  opts.py_conf_inc_dir,
++        "py_lib_dir":       opts.py_lib_dir,
+         "universal":        opts.universal,
+         "arch":             opts.arch,
+         "deployment_target":    opts.deployment_target
+@@ -399,6 +399,22 @@
+             "macros")
+     p.add_option_group(g)
+ 
++    # Python configuration
++    g = optparse.OptionGroup(p, title="Python include path")
++    g.add_option("-i", "--py_inc_dir", action="callback",
++	    default=plat_py_inc_dir, type="string", metavar="DIR",
++	    dest="py_inc_dir", callback=store_abspath, help="where the Python "
++	    "include directory located [default: %s]" % plat_py_inc_dir)
++    g.add_option("-c", "--py_conf_inc_dir", action="callback",
++	    default=plat_py_conf_inc_dir, type="string", metavar="DIR",
++	    dest="py_conf_inc_dir", callback=store_abspath, help="where the Python "
++	    "Configuration include directory located [default: %s]" % plat_py_conf_inc_dir)
++    g.add_option("-l", "--py_lib_dir", action="callback",
++	    default=plat_py_conf_inc_dir, type="string", metavar="DIR",
++	    dest="py_lib_dir", callback=store_abspath, help="where the Python "
++	    "library located [default: %s]" % plat_py_lib_dir)
++
++
+     # Installation.
+     g = optparse.OptionGroup(p, title="Installation")
+     g.add_option("-b", "--bindir", action="callback",

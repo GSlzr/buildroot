@@ -1,0 +1,11 @@
+--- a/configure-ng.py	2015-03-06 09:00:41.268046125 +0000
++++ b/configure-ng_new.py	2015-03-06 09:28:02.584081699 +0000
+@@ -1947,7 +1947,7 @@ def get_sip_flags(target_config):
+     elif target_config.py_platform == 'darwin':
+         plattag = 'WS_MACX'
+     else:
+-        plattag = 'WS_X11'
++        plattag = 'WS_QWS'
+ 
+     sip_flags.append('-t')
+     sip_flags.append(plattag)

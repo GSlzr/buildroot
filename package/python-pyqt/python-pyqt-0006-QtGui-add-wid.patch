@@ -1,0 +1,12 @@
+--- a/sip/QtGui/qwindowdefs.sip	2013-06-16 16:06:29.000000000 +0100
++++ b/sip/QtGui/qwindowdefs.sip	2015-03-06 09:46:58.188106312 +0000
+@@ -46,6 +46,9 @@ typedef HWND WId;
+ // MacOS/X specific definitions.
+ typedef long WId;
+ %End
++%If (WS_QWS)
++typedef unsigned long  WId;
++%End
+ %End
+ %If (Qt_5_0_0 -)
+ typedef quintptr WId;

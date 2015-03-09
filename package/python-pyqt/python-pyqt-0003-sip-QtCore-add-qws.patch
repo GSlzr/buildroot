@@ -1,0 +1,41 @@
+Add WS_QWS platform configuration in QtCore. Change HANDLE to void* to get rid
+of error during compilation
+
+Signed-off-by: Sergey Kostanbaev <sergey.kostanbaev at gmail.com>
+diff -ur PyQt-x11-gpl-4.9.6/sip/QtCore/qnamespace.sip pyqt-4.9.6/sip/QtCore/qnamespace.sip
+--- PyQt-x11-gpl-4.9.6/sip/QtCore/qnamespace.sip	2012-12-08 13:51:38.000000000 +0400
++++ pyqt-4.9.6/sip/QtCore/qnamespace.sip	2013-04-24 17:50:22.845000018 +0400
+@@ -1670,7 +1670,7 @@
+ %End
+ %End
+ %If (- Qt_5_0_0)
+-%If (WS_X11)
+-    typedef unsigned long HANDLE;
++%If (WS_X11 || WS_QWS)
++    typedef void* HANDLE;
+ %End
+ %End
+diff -ur PyQt-x11-gpl-4.9.6/sip/QtCore/qprocess.sip pyqt-4.9.6/sip/QtCore/qprocess.sip
+--- PyQt-x11-gpl-4.9.6/sip/QtCore/qprocess.sip	2012-12-08 13:51:38.000000000 +0400
++++ pyqt-4.9.6/sip/QtCore/qprocess.sip	2013-04-24 17:47:46.808000017 +0400
+@@ -28,7 +28,7 @@
+ %If (WS_WIN)
+ typedef void *Q_PID;
+ %End
+-%If (WS_X11 || WS_MACX)
++%If (WS_X11 || WS_MACX || WS_QWS)
+ typedef qint64 Q_PID;
+ %End
+ 
+diff -ur PyQt-x11-gpl-4.9.6/sip/QtCore/QtCoremod.sip pyqt-4.9.6/sip/QtCore/QtCoremod.sip
+--- PyQt-x11-gpl-4.9.6/sip/QtCore/QtCoremod.sip	2012-12-08 13:51:39.000000000 +0400
++++ pyqt-4.9.6/sip/QtCore/QtCoremod.sip	2013-04-24 17:48:37.599000018 +0400
+@@ -29,7 +29,7 @@
+ 
+ %Timeline {Qt_4_1_1 Qt_4_1_2 Qt_4_1_3 Qt_4_2_0 Qt_4_2_2 Qt_4_2_3 Qt_4_3_0 Qt_4_3_1 Qt_4_3_2 Qt_4_3_3 Qt_4_3_4 Qt_4_4_0 Qt_4_4_1 Qt_4_4_2 Qt_4_5_0 Qt_4_5_1 Qt_4_5_2 Qt_4_5_3 Qt_4_6_0 Qt_4_6_1 Qt_4_6_2 Qt_4_6_3 Qt_4_7_0 Qt_4_7_1 Qt_4_7_2 Qt_4_7_3 Qt_4_7_4 Qt_4_8_0 Qt_4_8_1 Qt_4_8_2 Qt_4_8_3 Qt_4_8_4 Qt_5_0_0}
+ 
+-%Platforms {WS_X11 WS_WIN WS_MACX}
++%Platforms {WS_X11 WS_WIN WS_MACX WS_QWS}
+ 
+ %Feature PyQt_Accessibility
+ %Feature PyQt_SessionManager

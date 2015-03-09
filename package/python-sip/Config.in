@@ -1,0 +1,8 @@
+config BR2_PACKAGE_PYTHON_SIP
+	bool "python-sip"
+	depends on BR2_PACKAGE_PYTHON
+	help
+	  SIP is a tool for C/C++ libraries binding. It was developed
+	  to create PyQt
+
+	  http://www.riverbankcomputing.com/software/sip/intro
